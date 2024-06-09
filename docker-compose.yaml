@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  kmeans:
+    image: kupaqu/bigdata-lab5
+    container_name: bigdata-lab5
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - '4040:4040'
+    environment:
+      - SPARK_MODE=master
+    networks:
+      - local
+
+networks:
+  local:
+    name: local
+    driver: bridge
+    external: true
