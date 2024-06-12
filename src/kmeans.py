@@ -8,7 +8,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.dataframe import DataFrame
 
 from logger import Logger
-from preprocess import read_and_scale
+from preprocess import read_and_prep
 
 SHOW_LOG = True
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
         .getOrCreate()
 
     data_path = config['data']['openfoodfacts']
-    df = read_and_scale(data_path, spark)
+    df = read_and_prep(data_path, spark)
 
     kmeans = KmeansEvaluator()
     scores = kmeans.fit_predict(df)
